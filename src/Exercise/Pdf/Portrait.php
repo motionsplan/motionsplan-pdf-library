@@ -76,7 +76,7 @@ class Portrait extends Pdf
 
     protected function addLogo()
     {
-        if ($this->logo instanceof ExerciseImageInterface) {
+        if (!$this->logo instanceof ExerciseImageInterface) {
             return;
         }
         $this->Image($this->logo->getPath(), 8, 270, 50, 0, '', $this->url);
@@ -84,7 +84,7 @@ class Portrait extends Pdf
 
     protected function addContribLogo()
     {
-        if ($this->logo instanceof ExerciseImageInterface) {
+        if (!$this->logo instanceof ExerciseImageInterface) {
             return;
         }
         $this->Image($this->contrib_logo->getPath(), 80, 268, 45, 0, '', $this->contrib_url);
