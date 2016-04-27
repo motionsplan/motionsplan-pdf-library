@@ -1,0 +1,32 @@
+{
+    "name": "motionsplan/motionsplan-pdf-library",
+    "description": "Create PDFs of of exercises, workouts and programs",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "http://github.com/motionsplan/motionsplan-pdf-library",
+    "authors": [
+        {
+            "name": "Lars Olesen",
+            "role": "lars@intraface.dk"
+        }
+    ],
+    "require": {
+        "tecnickcom/tcpdf": "6.2.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "squizlabs/php_codesniffer": "2.*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Motionsplan\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Motionsplan\\Tests\\": "tests/"
+        }
+    }
+}
