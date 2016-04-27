@@ -29,6 +29,8 @@ class PortraitTest extends \PHPUnit_Framework_TestCase
 
         // This is not really testing the library - just to see whether functions works.
         $pdf->Output($filename, 'F');
+
+        // Test and cleanup.
         $this->assertTrue(file_exists($filename));
         unlink($filename);
         array_map('unlink', glob(__DIR__ . '/*.png'));

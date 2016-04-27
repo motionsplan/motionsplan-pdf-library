@@ -7,9 +7,14 @@
 namespace Motionsplan\Exercise\Pdf;
 
 use Motionsplan\Pdf\Pdf;
+use Motionsplan\Exercise\ExerciseImageInterface;
 
 class Portrait extends Pdf
 {
+    protected $logo = null;
+    protected $url;
+    protected $contrib_logo = null;
+    protected $contrib_url;
     protected $font = 'Helvetica';
     protected $title_fill_color = array(0, 0, 0);
 
@@ -19,11 +24,6 @@ class Portrait extends Pdf
         $this->SetAutoPageBreak(false);
         $this->SetMargins(0, 0, 0);
         //$this->AliasNbPages();
-    }
-
-    protected function getPictureFilename()
-    {
-
     }
 
     /**
@@ -76,12 +76,19 @@ class Portrait extends Pdf
 
     protected function addLogo()
     {
+        if ($this->logo instanceof ExerciseImageInterface) {
+            return;
+        }
         $this->Image($this->logo->getPath(), 8, 270, 50, 0, '', $this->url);
     }
 
     protected function addContribLogo()
     {
+        if ($this->logo instanceof ExerciseImageInterface) {
+            return;
+        }
         $this->Image($this->contrib_logo->getPath(), 80, 268, 45, 0, '', $this->contrib_url);
+
     }
 
     protected function addImages(array $images)
@@ -96,8 +103,12 @@ class Portrait extends Pdf
         $spacing = 5;
         $count = 0;
         $picture_rows = 1;
+        $new_line = 0;
         $no_of_pics = count($images);
         foreach ($images as $image) {
+            if (!$image instanceof ExerciseImageInterface) {
+                continue;
+            }
             if (!file_exists($image->getPath())) {
                 continue;
             }
