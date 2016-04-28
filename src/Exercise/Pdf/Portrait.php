@@ -23,7 +23,6 @@ class Portrait extends Pdf
         parent::__construct('P', 'mm', 'A4', true, 'UTF-8', $disccache);
         $this->SetAutoPageBreak(false);
         $this->SetMargins(0, 0, 0);
-        //$this->AliasNbPages();
     }
 
     /**
@@ -101,7 +100,6 @@ class Portrait extends Pdf
         $new_y = $y;
         $width = 0;
         $spacing = 5;
-        $count = 0;
         $picture_rows = 1;
         $new_line = 0;
         $no_of_pics = count($images);
@@ -159,11 +157,10 @@ class Portrait extends Pdf
 
     protected function addKeywords()
     {
-        $keywords = array();
-
         /*
+        $keywords = array();
         foreach ($node->taxonomy as $taxonomy) {
-        $keywords[] = $taxonomy->name;
+          $keywords[] = $taxonomy->name;
         }
         */
 
