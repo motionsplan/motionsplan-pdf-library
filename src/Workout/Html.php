@@ -30,6 +30,7 @@ class Html
     public function getPdf()
     {
         $dompdf = new Dompdf();
+        $dompdf->setBasePath(__DIR__);
         $dompdf->loadHtml($this->html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();

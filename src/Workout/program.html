@@ -10,11 +10,10 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/main.style.css">
     </head>
     <body>
-<pre>{{ dump() }}</pre>
+
       <table class="metadata">
         <tr>
           <th>Træning</th>
@@ -26,21 +25,21 @@
         </tr>
       </table>
 
-      <p>Opvarmning @ SÆTxREPS (Rest)</p>
+      <h2>Opvarmning @ SÆTxREPS (Rest)</h2>
       <table class="warmup">
-        {% for exercise in warmup_exercises %}
-
+        {% for exercise in warmup_exercises|batch(2) %}
         <tr>
-          <td>{{ execise.title }}</td>
-          <td><pre>{{ dump(exercise) }}</pre></td>
+          {% for column in exercise %}
+          <td>{{ column.Title }}</td>
+          {% endfor %}
         </tr>
         {% endfor %}
       </table>
 
       {% for exercise in exercises %}
-      <pre>{{ dump(exercise) }}</pre>
-      <p><strong>{{ execise.Title }}</strong>: {{ exercise.Cue }}</p>
       <table class="exercise">
+        <caption><strong>{{ exercise.Title }}</strong>: {{ exercise.Cues }}</caption>
+        <thead>
         <tr>
           <th>Dato</th>
           <th>Uge</th>
@@ -56,6 +55,8 @@
           <th>#6</th>
           <th>PRE</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
           <td>1</td>
           <td></td>
@@ -116,6 +117,7 @@
           <td></td>
           <td></td>
         </tr>
+        </tbody>
       </table>
       {% endfor %}
 
