@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+<pre>{{ dump() }}</pre>
+      <table class="metadata">
+        <tr>
+          <th>Træning</th>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <th>Navn</th>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+
+      <p>Opvarmning @ SÆTxREPS (Rest)</p>
+      <table class="warmup">
+        {% for exercise in warmup_exercises %}
+
+        <tr>
+          <td>{{ execise.title }}</td>
+          <td><pre>{{ dump(exercise) }}</pre></td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      {% for exercise in exercises %}
+      <pre>{{ dump(exercise) }}</pre>
+      <p><strong>{{ execise.Title }}</strong>: {{ exercise.Cue }}</p>
+      <table class="exercise">
+        <tr>
+          <th>Dato</th>
+          <th>Uge</th>
+          <th>Sæt</th>
+          <th>Reps</th>
+          <th>Pause</th>
+          <th>Tempo</th>
+          <th>#1</th>
+          <th>#2</th>
+          <th>#3</th>
+          <th>#4</th>
+          <th>#5</th>
+          <th>#6</th>
+          <th>PRE</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      {% endfor %}
+
+    </body>
+</html>

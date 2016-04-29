@@ -7,6 +7,7 @@
 namespace Motionsplan\Exercise\Pdf;
 
 use Motionsplan\Pdf\Pdf;
+use Motionsplan\Exercise\ExerciseInterface;
 use Motionsplan\Exercise\ExerciseImageInterface;
 
 class Portrait extends Pdf
@@ -174,7 +175,7 @@ class Portrait extends Pdf
         */
     }
 
-    public function addNewPage($exercise)
+    public function addNewPage(ExerciseInterface $exercise)
     {
         parent::AddPage();
         $this->SetMargins(0, 0, 0);
