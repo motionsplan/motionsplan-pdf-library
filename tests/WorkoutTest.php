@@ -31,7 +31,7 @@ class WorkoutTest extends \PHPUnit_Framework_TestCase
     {
         $filename = __DIR__ . '/test.pdf';
         $output = $this->html->getPdf();
-        $this->assertTrue(is_string($output));
+        $this->assertTrue(is_string($output->output()));
         file_put_contents($filename, $output);
         //unlink($filename);
     }

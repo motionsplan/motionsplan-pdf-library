@@ -35,6 +35,6 @@ class Html
         $dompdf->loadHtml($this->html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
-        return $dompdf->output();
+        return $dompdf;
     }
 }
