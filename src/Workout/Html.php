@@ -17,6 +17,7 @@ class Html
         $twig->addExtension(new \Twig_Extension_Debug());
         $template = $twig->loadTemplate('program.html');
         $this->html = $template->render(array(
+            'title' => $workout->getTitle(),
             'warmup_exercises' => $workout->getWarmupExercises(),
             'exercises' => $workout->getExercises()
         ));

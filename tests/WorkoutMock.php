@@ -6,6 +6,11 @@ use Motionsplan\Tests\ExerciseMock;
 
 class WorkoutMock implements WorkoutInterface
 {
+    public function getTitle()
+    {
+        return 'My title';
+    }
+
     public function getIntroduction()
     {
         return 'My introduction';

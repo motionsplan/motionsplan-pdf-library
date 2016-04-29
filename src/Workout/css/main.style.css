@@ -5,6 +5,7 @@ h2 {
   font-size: 12px; }
 
 table {
+  margin-bottom: 6px;
   border-collapse: collapse;
   width: 100%; }
   table td, table th {
@@ -17,7 +18,10 @@ table {
       text-align: left; }
   table.warmup {
     text-align: left; }
-  table.exercises caption, table.exercises th, table.exercises td {
+  table.exercises caption {
+    width: 100%;
+    text-align: left; }
+  table.exercises th, table.exercises td {
     text-align: center; }
 
 /*# sourceMappingURL=main.style.css.map */
