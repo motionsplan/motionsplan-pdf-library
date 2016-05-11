@@ -27,7 +27,7 @@
         {% for exercise in warmup_exercises|batch(2) %}
         <tr>
           {% for column in exercise %}
-          <td>{{ column.Title }}</td>
+          <td><a href="{{ column.Url }}">{{ column.Title }}</a></td>
           {% endfor %}
         </tr>
         {% endfor %}
@@ -35,7 +35,7 @@
 
       {% for exercise in exercises %}
       <table class="exercises">
-        <caption align="left"><strong>{{ exercise.Title }}</strong>: {{ exercise.Cues }}</caption>
+        <caption align="left"><strong><a href="{{ exercise.Url }}">{{ exercise.Title }}</a></strong>: {{ exercise.Cues }}</caption>
         <thead>
         <tr>
           <th>Dato</th>
