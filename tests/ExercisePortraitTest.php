@@ -4,7 +4,7 @@ namespace Motionsplan\Tests;
 use Motionsplan\Exercise\Pdf\Portrait;
 use Motionsplan\Tests\ExerciseMock;
 
-class PortraitTest extends \PHPUnit_Framework_TestCase
+class ExercisePortraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testExceptionIsThrownIfTemporaryDirectoryHasNotBeenSet()
     {
