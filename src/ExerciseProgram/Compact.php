@@ -4,10 +4,16 @@ namespace Motionsplan\ExerciseProgram;
 use Motionsplan\Pdf\Pdf;
 use Motionsplan\Exercise\ExerciseImageInterface;
 
-class Compact extends \FPDF {
-  var $widths;
-  var $aligns;
-  var $imgs;
+class Compact extends \FPDF
+{
+    var $widths;
+    var $aligns;
+    protected $imgs;
+    protected $description;
+    protected $title;
+    protected $exercises = array();
+    protected $logo;
+    protected $url;
 
     public function setLogo($image, $url)
     {
@@ -21,13 +27,84 @@ class Compact extends \FPDF {
         $this->contrib_url = $url;
     }
 
+    function addTitle($title)
+    {
+        $this->SetTitle($title);
+        $this->title = $title;
+    }
 
-  /**
-   * Set the array of column width
-   */
-  function SetWidths($w) {
-    $this->widths=$w;
-  }
+
+    function addDescription($description)
+    {
+        //$this->SetSummary($description);
+        $this->description = $description;
+    }
+
+
+    public function addNewPage()
+    {
+        $this->SetAutoPageBreak(false);      
+        $this->AddPage();
+        $this->SetFont('Helvetica', 'B', 20);
+        $this->Cell(0, 10, $this->title, null, 2, 'L', FALSE);
+        $this->Image($this->logo->getPath(), 150, 8, 50, 0, '', $this->url);
+        $this->setTextColor(0, 0, 0);
+        $this->SetFont('Helvetica', null, 10);
+        $this->MultiCell(180, 6, $this->description, 0);
+  
+        // $pdf->writeHTMLCell(180, 6, $pdf->GetX(), $pdf->GetY(), $description, 0); 
+        $this->SetY($this->GetY()+2);
+  
+        // Table starts.
+        $this->SetWidths(array(50, 70, 70));
+        $this->SetFont('Helvetica', 'B', 10);
+        $this->Row(
+            array(
+                utf8_decode('Øvelse'), 
+                utf8_decode('Beskrivelse'), 
+                utf8_decode('Kommentar')
+            )
+        );
+        $this->SetFont('Helvetica', null, 10);
+
+        foreach ($this->exercises as $e) {
+
+            $imgs = array();
+            foreach ($e->getImages() as $image) {
+                $imgs[] = $image->getPath();
+            }
+            if (sizeof($imgs) > 3) {
+                $tmp_imgs = array();
+                $tmp_imgs[] = $imgs[0];
+                $tmp_imgs[] = $imgs[floor(sizeof($imgs) / 2)];
+                $tmp_imgs[] = $imgs[sizeof($imgs) - 1];
+                $imgs = $tmp_imgs;
+            }
+            
+            $this->Row(
+                array(
+                    utf8_decode($e->getTitle()),
+                    utf8_decode($e->getDescription()),
+                    ''
+                ), 
+                $imgs
+            );
+        }
+        
+    }
+  
+    public function addExercise($exercise)
+    {
+        $this->exercises[] = $exercise;
+    }
+
+    /**
+      * Set the array of column width
+      */
+    function SetWidths($w)
+    {
+        $this->widths=$w;
+    }
 
   /**
    * Set the array of column alignments
@@ -36,11 +113,12 @@ class Compact extends \FPDF {
     $this->aligns=$a;
   }
 
-  function Row($data, $pics = array()) {
+  protected function Row($data, $pics = array())
+  {
     // Calculate the height of the row.
     $pic_width = 15;
     $pic_height = 15;
-    $nb=0;
+    $nb = 0;
     for ($i = 0; $i < count($data); $i++) {
       $nb = max($nb, $this->NbLines($this->widths[$i], $data[$i]));
     }
@@ -54,8 +132,8 @@ class Compact extends \FPDF {
     $this->CheckPageBreak($h);
     // Draw the cells of the row.
     for ($i = 0; $i < count($data); $i++) {
-      $w=$this->widths[$i];
-      $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
+      $w = $this->widths[$i];
+      $a = isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';
       // Save the current position.
       $x = $this->GetX();
       $y = $this->GetY();
@@ -77,7 +155,7 @@ class Compact extends \FPDF {
         }
       }
       // Put the position to the right of the cell.
-      $this->SetXY($x+$w,$y);
+      $this->SetXY($x + $w, $y);
     }
 
     // Go to the next line.

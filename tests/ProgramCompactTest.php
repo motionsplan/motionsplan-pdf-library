@@ -12,22 +12,37 @@ class ProgramCompactTest extends \PHPUnit_Framework_TestCase
             $pdf = new Compact();
             $pdf->setLogo(new ExerciseImageMock(), 'http://motionsplan.dk');
             $pdf->setContribLogo(new ExerciseImageMock(), 'http://vih.dk');
-            $pdf->addNewPage(new ExerciseMock);
+            // $pdf->addNewPage(new ExerciseMock);
         } catch (\Exception $e) {
             $this->assertTrue(true);
         }
     }
 
-    public function testCompact()
+    public function testCompactTrainingProgram()
     {
         $filename =  __DIR__ . '/compact-program.pdf';
         $pdf = new Compact();
-        $pdf->setTemporaryDirectory(__DIR__);
+        //$pdf->setTemporaryDirectory(__DIR__);
         $pdf->setLogo(new ExerciseImageMock(), 'http://motionsplan.dk');
         $pdf->setContribLogo(new ExerciseImageMock(), 'http://vih.dk');
-        $pdf->addNewPage(new ExerciseMock);
-
+        
+        // Metadata
+        $pdf->SetTitle('My cool training program');
+        $pdf->SetSubject('My cool subject');
+        $pdf->SetAuthor('Motionsplan.dk');
+        $pdf->SetAutoPageBreak(false);
+        
+        // Content
+        $pdf->addTitle('My beautiful title for trainingprogram');
+        $pdf->addDescription('<p>My <b>description</b> in html</p>');
         // This is not really testing the library - just to see whether functions works.
+
+        $pdf->addExercise(new ExerciseMock);
+
+        // Add the page
+        $pdf->AddNewPage();
+
+
         $pdf->Output($filename, 'F');
 
         // Test and cleanup.
@@ -101,7 +116,14 @@ function exerciseprogram_print_compact_pdf($node) {
       $imgs = $tmp_imgs;
     }
 
-    $pdf->Row(array(utf8_decode($e->title), utf8_decode($e->field_exercise_intro[LANGUAGE_NONE][0]['value']), ''), $imgs); 
+    $pdf->Row(
+      array(
+        utf8_decode($e->title), 
+        utf8_decode($e->field_exercise_intro[LANGUAGE_NONE][0]['value']), 
+        ''
+      ), 
+      $imgs
+    ); 
   }
 
   $pdf->Output($title . '.pdf', 'I');
