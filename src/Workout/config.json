@@ -1,0 +1,24 @@
+{
+  "bowerDir": "./bower_components",
+  "css": {
+    "file" : "main.style.scss",
+    "src": [
+      "scss/**/*.scss"
+    ],
+    "dest": "css",
+    "includePaths": [
+    ]
+  },
+  "images": {
+    "src": [
+      "assets/images/**/*"
+    ],
+    "dest": "assets/images/"
+  },
+  "fonts": {
+    "src": [
+      "./bower_components/font-awesome/fonts/**.*"
+    ],
+    "dest": "./assets/fonts/"
+  }
+}

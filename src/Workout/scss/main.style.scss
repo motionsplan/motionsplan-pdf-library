@@ -1,0 +1,44 @@
+$black: black;
+$font-size: 12px;
+
+body {
+  font-size: $font-size;
+}
+
+h2 {
+  font-size: $font-size;
+}
+
+table {
+  margin-bottom: $font-size / 2;
+  border-collapse: collapse;
+  width: 100%;
+
+  td, th {
+    border: 1px solid $black;
+  }
+
+  &.metadata {
+    font-size: $font-size + 4;
+    th {
+      width: 20%;
+    }
+    th, td {
+      text-align: left;
+    }
+  }
+
+  &.warmup {
+    text-align: left;
+  }
+
+  &.exercises {
+    caption {
+      width: 100%;
+      text-align: left;
+    }
+    th, td {
+      text-align: center;
+    }
+  }
+}
